@@ -1,0 +1,24 @@
+.TH OCEANIA 1 "April 2023" "VentGrey"
+
+.SH NAME
+Oceania - Monitor Docker containers and display their state
+
+.SH SYNOPSIS
+.B oceania
+
+.SH DESCRIPTION
+.B Oceania
+is a small command-line tool written in Go that monitors Docker containers and displays their state in the terminal. It uses the Docker Go SDK to interact with the Docker daemon and retrieve the state of the containers.
+
+.SH OPTIONS
+None
+
+.SH EXAMPLES
+To run Oceania, simply execute the following command:
+
+.B oceania
+
+The output will be a list of all currently running Docker containers with their corresponding state displayed as a colored circle icon. Green indicates the container is running, red indicates it is not running, and yellow indicates it is in a degraded state.
+
+.SH AUTHORS
+Oceania was originally written by VentGrey in 2017 and ported to Go in 2023.

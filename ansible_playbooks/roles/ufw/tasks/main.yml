@@ -1,0 +1,23 @@
+---
+- name: Install UFW
+  apt:
+    name: ufw
+    state: present
+
+- name: Configure UFW
+  ufw:
+    rule: allow
+    name: "{{ item }}"
+  loop:
+    - ssh
+    - 9000/tcp  # Portainer port
+  notify: restart ufw
+
+- name: Enable UFW
+  ufw:
+    state: enabled
+  notify: restart ufw
+
+- name: Restart UFW
+  meta: flush_handlers
+...

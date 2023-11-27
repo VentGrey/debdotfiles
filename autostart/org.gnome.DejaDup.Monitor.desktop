@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# SPDX-FileCopyrightText: Michael Terry
+
+[Desktop Entry]
+Name=Backup Monitor
+Comment=Schedules backups at regular intervals
+
+Icon=org.gnome.DejaDup
+
+Exec=/usr/libexec/deja-dup/deja-dup-monitor
+
+X-GNOME-Autostart-Delay=120
+
+StartupNotify=false
+NoDisplay=true
+
+Type=Application
+Categories=Utility;Archiving;
+X-MATE-Autostart-enabled=false

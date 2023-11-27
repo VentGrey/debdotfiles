@@ -1,0 +1,5 @@
+---
+- name: Configure hostname
+  hostname:
+    name: "TheGreyCorner"
+...

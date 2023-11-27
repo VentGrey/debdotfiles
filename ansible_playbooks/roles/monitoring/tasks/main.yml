@@ -1,0 +1,16 @@
+---
+- name: Download Prometheus & Grafana using Docker Compose
+  get_url:
+    url: https://raw.githubusercontent.com/prometheus/prometheus/main/documentation/examples/prometheus-docker-compose.yml
+    dest: /opt/monitoring/docker-compose.yml
+
+- name: Create data directory for Grafana
+  file:
+    path: /opt/monitoring/grafana-data
+    state: directory
+
+- name: Docker compose up
+  docker_compose:
+    project_src: /opt/monitoring
+    state: present
+...

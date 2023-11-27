@@ -1,0 +1,14 @@
+#!/bin/sh
+
+option=$(printf " Shutdown\n Reboot\n鈴 Suspend\n Logout\n" \
+    | rofi -dmenu)
+
+case $option in
+    " Shutdown") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true ;;
+    " Reboot") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Reboot" boolean:true ;;
+    "鈴 Suspend") dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.Suspend" boolean:true ;;
+    " Logout") loginctl terminate-session "${XDG_SESSION_ID-}";;
+    "") exit 0;;
+    *) notify-send "What are you trying to do?"\
+        "Son, this is a power menu" --icon=face-worried
+esac

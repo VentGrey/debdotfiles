@@ -1,0 +1,26 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Configure Nginx as reverse proxy
+  template:
+    src: nginx/portainer.conf.j2
+    dest: /etc/nginx/sites-available/portainer
+  notify: restart nginx
+
+- name: Create symlink to site
+  file:
+    src: /etc/nginx/sites-available/portainer
+    dest: /etc/nginx/sites-enabled/
+  notify: restart nginx
+
+- name: Delete default Nginx config
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Restart Nginx
+  meta: flush_handlers
+...

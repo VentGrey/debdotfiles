@@ -1,0 +1,5 @@
+---
+- name: Configure Timezone
+  timezone:
+    name: "America/New_York"
+...

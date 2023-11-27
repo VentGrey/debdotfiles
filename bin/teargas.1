@@ -1,0 +1,55 @@
+.TH TEARGAS 1 "August 2023" "Version 2.0.0" "Teargas Manual - VentGrey & La Esquina Gris"
+
+.SH NOMBRE
+Teargas - Small, extremely-portable, simple HTTP request tool with JWT support.
+
+.SH SYNOPSIS
+.B teargas
+[\fB-url\fR \fIURL\fR] [\fB-output\fR \fIFILE\fR] [\fB-username\fR \fIUSERNAME\fR] [\fB-password\fR \fIPASSWORD\fR] [\fB-authurl\fR \fIAUTHURL\fR]
+
+
+.SH DESCRIPION
+ \fBTeargas\fR is a simple HTTP request tool designed to be straightforward. It can make HTTP requests, handle JWT authentication and provides basic response statistics.
+
+.SH OPTIONS
+.IP "\fB-url\fR \fIURL\fR"
+The URL to be tested.
+.IP "\fB-output\fR \fIFILE\fR"
+The output file where the response will be saved.
+.IP "\fB-username\fR \fIUSERNAME\fR"
+The username for JWT authentication.
+.IP "\fB-password\fR \fIPASSWORD\fR"
+The password for JWT authentication.
+.IP "\fB-authurl\fR \fIAUTHURL\fR"
+The authentication URL to obtain the JWT token.
+
+By specifying the \fB-username\fR, \fB-password\fR, and \fB-authurl\fR flags, teargas will attempt to obtain a JWT token and use it for the main HTTP request. This is useful for testing endpoints that require JWT authentication.
+
+.SH JWT AUTHENTICATION
+If you provide a \fB-username\fR, \fB-password\fR, and \fB-authurl\fR, teargas will first attempt to obtain a JWT token by sending the provided credentials to the authentication URL. If successful, the JWT token will be used for the main HTTP request to the \fB-url\fR.
+
+This allows users to test endpoints that require JWT authentication without having to manually obtain and manage JWT tokens.
+
+.SH RESPONSE STATISTICS
+After making an HTTP request, teargas provides the following statistics:
+.IP "•"
+Duration of the request.
+.IP "•"
+HTTP status code of the response.
+.IP "•"
+Size of the response in bytes.
+
+These statistics give users a quick overview of the endpoint's performance and response characteristics.
+
+.SH EXAMPLES
+Making a simple HTTP request:
+.B teargas -url http://api.example.com/getData/1 -output output.json
+.br
+Testing an endpoint with JWT authentication:
+.B teargas -url http://api.example.com/secureData -username john -password secret123 -authurl http://api.example.com/auth/login
+
+.SH COPYRIGHT
+Copyright © 2023 Omar Jair Purata Funes - VentGrey / La Esquina Gris.
+
+.SH BUGS
+Report any bugs to omar@laesquinagris.com

@@ -1,0 +1,11 @@
+[Unit]
+Description=Mostrar estado de los contenedores de Docker con Oceania
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/oceania
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

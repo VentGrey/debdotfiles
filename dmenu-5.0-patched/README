@@ -1,0 +1,28 @@
+ventmenu - dynamic menu based on dmenu 5.0
+====================
+ventmenu is a heavily patched version of dmenu 5.0 which itself is an efficient dynamic menu for X.
+
+Differences
+-----------
+- Applied center patch to center dmenu without the need to use a bash / sh script.
+
+
+Requirements
+------------
+In order to build ventmenu you need the Xlib header files.
+
+
+Installation
+------------
+Edit config.mk to match your local setup (ventmenu is installed into
+the /usr/local namespace by default).
+
+Afterwards enter the following command to build and install ventmenu
+(if necessary as root):
+
+    make clean install
+
+
+Running ventmenu
+-------------
+See the man page for details.

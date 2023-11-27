@@ -1,0 +1,12 @@
+---
+- name: Configure Orange Pi
+  hosts: opilite
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - common
+    - orangepiuser
+    - docker
+    - portainer
+...

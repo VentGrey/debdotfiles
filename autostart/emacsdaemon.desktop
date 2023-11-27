@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Emacs Daemon
+Comment=Start the emacs daemon at desktop startup
+Icon=emacs
+Exec=emacs --daemon
+Terminal=false
+Type=Application

@@ -1,0 +1,31 @@
+---
+- name: Install basic packages for fresh installation.
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-listchanges
+    - armbian-config
+    - debian-goodies
+    - debianutils
+    - dirmngr
+    - fail2ban
+    - g++
+    - gcc
+    - git
+    - lynis
+    - needrestart
+    - ntp
+    - python3
+    - python3-pip
+    - resolvconf
+    - rkhunter
+    - rsync
+    - rsyslog
+    - sudo
+    - ufw
+    - unattended-upgrades
+    - util-linux
+    - vim
+    - wget
+...

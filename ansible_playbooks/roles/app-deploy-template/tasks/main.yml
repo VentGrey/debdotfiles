@@ -1,0 +1,17 @@
+---
+# WARNING: THIS IS A TEMPLATE TASK, USE THIS FOR NEW APPLICATION DEPLOYMENTS UNDER app-deploy/, do not run this file.
+- name: Clonar repositorio de la aplicación
+  git:
+    repo: https://github.com/tu_usuario/tu_repositorio.git
+    dest: /opt/tu_aplicacion
+
+- name: Configurar variables de entorno
+  template:
+    src: app/env_file.j2
+    dest: /opt/tu_aplicacion/.env
+
+- name: Levantar contenedores con Docker Compose
+  docker_compose:
+    project_src: /opt/tu_aplicacion
+    state: present
+...

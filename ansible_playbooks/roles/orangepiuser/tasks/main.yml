@@ -1,0 +1,16 @@
+---
+- name: Create users
+  user:
+    name: "{{ item.name }}"
+    state: present
+    create_home: yes
+  loop: "{{ users }}"
+  when: item.name is defined
+
+- name: Set users passwords
+  user:
+    name: "{{ item.name }}"
+    password: "{{ item.password | password_hash('sha512') }}"
+  loop: "{{ users }}"
+  when: item.password is defined
+...

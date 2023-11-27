@@ -1,0 +1,17 @@
+---
+- name: Download and install Portainer
+  docker_compose:
+    project_name: portainer
+    definition:
+      version: '3'
+      services:
+        portainer:
+          image: portainer/portainer-ce:linux-arm
+          container_name: portainer
+          restart: always
+          ports:
+            - "9000:9000"
+          volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /opt/portainer:/data
+...

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+if [ "$(id -u)" -ne 0 ]; then
+    printf "%s" "[ERROR] El script debe ser ejecutado con permisos de root!\n"
+    exit 1
+fi
+
+# Siempre descargar la última versión de GitHub.
+curl -s https://api.github.com/repos/pocketbase/pocketbase/releases/latest \
+| grep "browser_download_url.*linux_amd" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -O pocketbase.zip -qi -
+
+# Desempaquetar pocketbase para su instalación
+if [ ! "$(command -v unzip)" ]; then
+    printf "%s" "[ERROR] No existe el comando unzip!\n"
+else
+    printf "%s" "Descomprimiendo pocketbase...\n"
+    unzip pocketbase.zip
+fi
+
+# Instalar Pocketbase en el servidor
+printf "%s" "Eliminando archivos innecesarios...\n"
+rm pocketbase.zip README.md
+printf "%s" "Instalando pocketbase en el usuario actual...\n"
+mv -f pocketbase /home/$USER/pocketbase && printf "%s" "¡Listo!\n"
+printf "%s" "Reiniciando servicio de systemd\n"
+systemctl restart pocketbase.service
+
+printf "%s" "Instalación de pocketbase en su última versión de forma\
+    satisfactoria. En caso de encontrar errores ejecute la orden\
+    'systemctl status pocketbase.service'"
